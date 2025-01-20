@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "somali-relief",
-    "slug": "somali-relief",
+    "slug": "baitul-rahman",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b187d5e8-6a69-402d-9624-dedc566a5a83"
+      }
+    },
+    "owner": "maxsteel_frost"
   }
 }
