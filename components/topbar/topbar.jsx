@@ -1,48 +1,67 @@
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, Image, Dimensions, Button } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faBars, faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
+import { actions } from '../../redux/actions';
 
-const Topbar = () => {
+const Topbar = ({ toggleSidedrawer }) => {
+
+    const dimenstions = Dimensions.get('window').width;
+
     return (
-        <SafeAreaView style={styles.container}>
-            <View style = {styles.iconContainer}>
-                <FontAwesomeIcon style={styles.icon} icon={faBars} />
-            </View>
-            <View style={styles.rightPanel}>
-                <View style={styles.iconContainer}>
-                    <FontAwesomeIcon style={styles.icon} icon={faEnvelope} />
+        <ScrollView contentContainerStyle={{ width: dimenstions }} horizontal>
+            <View style={styles.container}>
+                <View style={styles.left}>
+                    <Image source={require('../../assets/images/logo/logo_small.png')} style={styles.logo}/>
                 </View>
-                <View style={styles.iconContainer}>
-                    <FontAwesomeIcon style={styles.icon} icon={faBell} />
-                </View>
+                <Button title={
+                    <FontAwesomeIcon style={styles.icon} icon={faBars} />
+                } color={'#ffffff00'} onPress={toggleSidedrawer}>
+                </Button>
             </View>
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 
-export default Topbar;
+const mapStateToProps = state => {
+    return {
+        sidedrawer: state.sidedrawer
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleSidedrawer: () => dispatch({type: actions.TOGGLE_SIDEDRAWER })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Topbar);
 
 
 const styles = StyleSheet.create({
     container: {
-        // position: ,
-        // top: 0,
-        // left: 0,
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#20212485',
+        backgroundColor: '#b3bbd385',
         zIndex: 1
     },
-    rightPanel: {
+    left: {
+        width: 50,
+        height: 50,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
     },
-    iconContainer: {
+    logo: {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover'
+    },
+    right: {
         width: 50,
         height: 50,
         display: 'flex',

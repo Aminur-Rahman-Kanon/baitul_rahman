@@ -3,17 +3,27 @@ import Topbar from './components/topbar/topbar';
 import PrayerTime from './components/prayerTime/prayerTime';
 import Background from './components/background/background';
 import Toppanel from './components/topPanel/topPanel';
+import Sidedrawer from './components/sidedrawer/sidedrawer';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { reducer } from './redux/reducer';
 
 export default function App() {
+
+  const store = createStore(reducer);
+
   return (
+    <Provider store={store}>
       <SafeAreaView style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]} contentContainerStyle={styles.scrollView} style={styles.main}>
+        <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[0]} contentContainerStyle={styles.scrollView}>
+          <Sidedrawer />
           <Topbar />
           <Background />
           <PrayerTime />
           <Toppanel />
         </ScrollView>
       </SafeAreaView>
+    </Provider>
   );
 }
 
@@ -22,6 +32,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   scrollView: {
+    position: 'relative',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
@@ -32,7 +43,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },

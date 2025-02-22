@@ -106,7 +106,7 @@ export default PrayerTime;
 
 const styles = StyleSheet.create({
     container: {
-        width: '90%',
+        width: '95%',
         marginVertical: 50,
         padding: 10,
         borderRadius: 10,
